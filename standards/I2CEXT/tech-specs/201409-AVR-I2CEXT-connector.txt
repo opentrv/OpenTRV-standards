@@ -12,12 +12,17 @@ KIND, either express or implied. See the Licence for the
 specific language governing permissions and limitations
 under the Licence.
 
-Author(s) / Copyright (s): Damon Hart-Davis 2014--2015
+Author(s) / Copyright (s): Damon Hart-Davis 2014--2016
+
+
+
+IC2EXT1 (SMALL CONNECTOR)
 
 
 
 REVISIONS
 
+2016/10/07: Revision 5b, making IC2EXT1 name explicit.
 2014/09/14: Revision 5, adding some more details of location and form. 
 2014/09/08: Revision 4, allowing 4k7 for RX/TX serial for common values.
 2014/09/08: Revision 3, note that the nIRQ and nSC lines can be left unconnected on some board variants.

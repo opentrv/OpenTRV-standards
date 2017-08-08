@@ -12,13 +12,14 @@ KIND, either express or implied. See the Licence for the
 specific language governing permissions and limitations
 under the Licence.
 
-Author(s) / Copyright (s): Damon Hart-Davis 2015--2016
+Author(s) / Copyright (s): Damon Hart-Davis 2015--2017
 
 
 
 
 RECENT/SIGNIFICANT REVISIONS
 
+V0.1.20170808: minor typos fixed and some long lines wrapped.
 V0.1.20160304: outlining defence against initial replay attack when new association made.
 V0.1.20160215: adjusting 'O' frame flags meanings, primarily to include frost indicator.
 V0.1.20160207: fixing encrypted example to enforce seqNum == message count & 0xf.
@@ -163,7 +164,7 @@ TRAILER SECTION (length tl, never zero length)
         any of the plain-text of an encrypted body.
         The final byte of the trailer should neither be 0x0 nor 0xff.
 
-tr      1-byte 7-bit CRC in insecure mode, of polynominal 0x5B (Koopman),
+tr      1-byte 7-bit CRC in insecure mode, of polynomial 0x5B (Koopman),
         initialised with 0x7f.  If the CRC would be 0 then 0x80 is sent instead
         to avoid 0 or 0xff final frame byte (ie self-whitening).
         In secure mode this trailer is variable non-zero length security info
@@ -300,8 +301,9 @@ When secure:
   * Construction and use of IV/nonce as:
     http://www.earth.org.uk/note-on-IoT-security.html#app4
       * 6 most-significant bytes of leaf ID,
-        with all of the ID that is in the header thus in ADATA (authenticated) section,
-        and with any trailing ID not in the header needing to pre-shared
+        with all of the ID that is in the header thus in ADATA (authenticated)
+        section, and with any trailing ID not in the header needing to be
+        pre-shared
       * 3 bytes transmitted of restart/reboot count + implicit further ID byte
         (allows 17 million restarts of 30 years at 1 per minute,
         which my be needed for energy-harvesting for example)
@@ -328,7 +330,8 @@ When secure:
       * The 16-byte authentication tag.
   * The unencrypted body text is padded with trailing zero bytes
     to a multiple of 16 bytes - 1, eg to 15 or 31 bytes typically,
-    with a final byte being the number of bytes of padding excluding the final byte [0,31],
+    with a final byte being the number of bytes of padding
+    excluding the final byte [0,31],
     with padding to a fixed 32-byte block allowed for simplicity,
     but allowed in 16-byte blocks as an extension.  The upper 3 bits of the
     final byte before encryption are reserved and currently zero.
@@ -388,7 +391,7 @@ ID prefix is always transmitted but the IV calculation is adjusted.
 *Note3: to avoid replay attacks at the point of association of an
 existing node with a new receiver, as well as setting the node ID and key,
 it may be desirable to set the most-significant (persistent/restart)
-RX counter bytes to one hugher than the current value used by the transmitter
+RX counter bytes to one higher than the current value used by the transmitter
 (with all zero ephemeral LSBs), and then force a restart of the transmitter
 to force its TX MSB persistent reboot/restart count to increment,
 thus ensuring that the receiver will not accept a replay of any of its
